@@ -82,6 +82,39 @@
   overflow: scroll;
 }
 
+.upper-content {
+  display: flex;
+  margin-bottom: 10px;
+}
+
+.problem-user {
+  color: white;
+  font-size: 20px;
+}
+
+.problem-date {
+  color: white;
+  font-size: 18px;
+  padding-left: 10px;
+}
+
+.lower-content {
+  color: white;
+  font-size: 16px;
+}
+
+.problem-title {
+  margin: 0 0 5px 0;
+}
+
+.standpoint {
+  margin: 0 0 5px 0;
+}
+
+.content {
+  margin-bottom: 40px;
+}
+
 .comments {
   background-color: #FAFAFA;
   height: calc(100vh - 100px - 200px - 90px);
