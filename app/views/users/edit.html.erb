@@ -10,10 +10,10 @@
       <%= form_with model: current_user, local: true do |f|%>
         <div class='field'>
           <div class='field-label'>
-            <%= f.label :name%>
+            <%= f.label :nickname%>
           </div>
           <div class='field-input'>
-            <%= f.text_field :name, autofocus: true%>
+            <%= f.text_field :nickname, autofocus: true%>
           </div>
         </div>
         <div class='field'>
@@ -22,6 +22,38 @@
           </div>
           <div class='field-input'>
             <%= f.email_field :email%>
+          </div>
+        </div>
+        <div class='field'>
+          <div class='field-label'>
+            <%= f.label :gender_id%>
+          </div>
+          <div class='field-input'>
+            <%= f.text_field :gender_id%>
+          </div>
+        </div>
+        <div class='field'>
+          <div class='field-label'>
+            <%= f.label :age%>
+          </div>
+          <div class='field-input'>
+            <%= f.text_field :age%>
+          </div>
+        </div>
+        <div class='field'>
+          <div class='field-label'>
+            <%= f.label :occupation_id%>
+          </div>
+          <div class='field-input'>
+            <%= f.text_field :occupation_id%>
+          </div>
+        </div>
+        <div class='field'>
+          <div class='field-label'>
+            <%= f.label :family_id%>
+          </div>
+          <div class='field-input'>
+            <%= f.text_field :family_id%>
           </div>
         </div>
         <div class='actions'>
