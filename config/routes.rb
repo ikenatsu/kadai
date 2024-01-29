@@ -3,4 +3,5 @@ Rails.application.routes.draw do
   get 'comments/index'
   root to: "comments#index"
   resources :users, only: [:edit, :update]
+  resources :problems, only: [:new, :create]
 end
