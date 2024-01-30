@@ -10,4 +10,6 @@ class User < ApplicationRecord
   validates :gender_id, :occupation_id, :family_id,
             numericality: { other_than: 1, message: 'must be selected' }
   
+  has_many :problem_users
+  has_many :problems, through: :problem_users
 end
