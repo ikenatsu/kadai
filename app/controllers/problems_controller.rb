@@ -4,7 +4,18 @@ class ProblemsController < ApplicationController
   end
 
   def create
-    binding.pry
+    @problem = Problem.new(problem_params)
+    if @problem.save
+      redirect_to root_path
+    else
+      render :new, status: :unprocessable_entity
+    end
   end
   
+  private
+
+  def problem_params
+    params.require(:problem).permit(:problem_title, :message, :standpoint_id, user_ids: [])
+  end
+
 end
