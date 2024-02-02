@@ -1,14 +1,32 @@
 <div class='chat-room-form'>
-  <h1>新規チャットルーム</h1>
+  <h1>新規課題</h1>
   <%=form_with model: @problem, local: true do |f|%>
     <div class='chat-room-form__field'>
       <div class='chat-room-form__field--left'>
-        <%= f.label :name, :チャットルーム名, class: 'chat-room-form__label'%>
+        <%= f.label :problem_title, :チャットルーム名, class: 'chat-room-form__label'%>
       </div>
       <div class='chat-room-form__field--right'>
-        <%= f.text_field :name, class: 'chat__room_name chat-room-form__input', placeholder: 'チャットルーム名を入力してください'%>
+        <%= f.text_field :problem_title, class: 'chat__room_name chat-room-form__input', placeholder: 'チャットルーム名を入力してください'%>
       </div>
     </div>
+    
+    <div class='chat-room-form__field'>
+      <div class='chat-room-form__field--left'>
+        <%= f.label :message, :メッセージ, class: 'chat-room-form__label'%>
+      </div>
+      <div class='chat-room-form__field--right'>
+        <%= f.text_field :message, class: 'chat__room_name chat-room-form__input', placeholder: '深掘りしたいことなど、メッセージを入れてください'%>
+      </div>
+    </div>
+    <div class='chat-room-form__field'>
+      <div class='chat-room-form__field--left'>
+        <%= f.label :standpoint_id, :課題発信者の立ち位置, class: 'chat-room-form__label'%>
+      </div>
+      <div class='chat-room-form__field--right'>
+        <%= f.text_field :standpoint_id, class: 'chat__room_name chat-room-form__input', placeholder: 'どういう目線での課題かを入力してください'%>
+      </div>
+    </div>
+    
     <div class='chat-room-form__field'>
     </div>
     <div class='chat-room-form__field'>
@@ -16,13 +34,13 @@
         <label class='chat-room-form__label' for='chat_room_チャットメンバー'>チャットメンバー</label>
       </div>
       <div class='chat-room-form__field--right'>
-        <select nickname="problem[user_ids][]">
+        <select name="problem[user_ids][]">
           <option value="">課題の抽出や考察を一緒にしたいユーザーを選択してください</option>
           <% User.where.not(id: current_user.id).each do |user| %>
             <option value=<%= user.id %>><%= user.nickname %></option>
           <% end %>
         </select>
-        <input nickname="problem[user_ids][]" type="hidden" value=<%= current_user.id %>>
+        <input name="problem[user_ids][]" type="hidden" value=<%= current_user.id %>>
       </div>
     </div>
     <div class='chat-room-form__field'>
