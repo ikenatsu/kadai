@@ -11,7 +11,7 @@
 <% current_user.problems.each do |problem| %>
     <div class="problem">
       <div class="problem-title">
-        <a href="#"><%= problem.problem_title %></a>
+        <%= link_to problem.problem_title, problem_comments_path(problem) %>
       </div>
     </div>
   <% end %>
