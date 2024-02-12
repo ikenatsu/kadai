@@ -38,36 +38,7 @@
 </div>
 
 <div class="comments">
-  <div class="comment">
-    <div class="upper-comment">
-      <div class="comment-user">
-        Tom
-      </div>
-      <div class="comment-date">
-        2020/3/31(Wed) 12:43:30
-      </div>
-    </div>
-    <div class="lower-comment">
-      <div class="comment-content">
-        おはよう
-      </div>
-    </div>
-  </div>
-  <div class="comment">
-    <div class="upper-comment">
-      <div class="comment-user">
-        Tom
-      </div>
-      <div class="comment-date">
-        2020/3/31(Wed) 12:47:30
-      </div>
-    </div>
-    <div class="lower-comment">
-      <div class="comment-content">
-        こんばんは
-      </div>
-    </div>
-  </div>
+  <%= render partial: 'comment', collection: @comments %>
 </div>
 
 <%# <div class="form">
