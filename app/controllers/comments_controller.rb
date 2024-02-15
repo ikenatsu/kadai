@@ -11,7 +11,7 @@ class CommentsController < ApplicationController
     if @comment.save
       redirect_to problem_comments_path(@problem)
     else
-      @comments = @problem.messages.includes(:user)
+      @comments = @problem.comments.includes(:user)
       render :index, status: :unprocessable_entity
     end
   end
