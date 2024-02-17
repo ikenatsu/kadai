@@ -12,4 +12,6 @@ class User < ApplicationRecord
   
   has_many :problem_users
   has_many :problems, through: :problem_users
+  has_many :comments
+  
 end

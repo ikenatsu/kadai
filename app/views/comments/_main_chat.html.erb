@@ -1,12 +1,12 @@
 <div class="chat-header">
   <div class="left-header">
     <div class="header-title">
-      hogefuga
+      <%= @problem.problem_title %>
     </div>
   </div>
   <div class="right-header">
     <div class="header-button">
-      <a href="#">チャットを終了する</a>
+      <%= link_to "チャットを終了する", problem_path(@problem), data: { turbo_method: :delete } %>
     </div>
   </div>
 </div>
@@ -38,39 +38,10 @@
 </div>
 
 <div class="comments">
-  <div class="comment">
-    <div class="upper-comment">
-      <div class="comment-user">
-        Tom
-      </div>
-      <div class="comment-date">
-        2020/3/31(Wed) 12:43:30
-      </div>
-    </div>
-    <div class="lower-comment">
-      <div class="comment-content">
-        おはよう
-      </div>
-    </div>
-  </div>
-  <div class="comment">
-    <div class="upper-comment">
-      <div class="comment-user">
-        Tom
-      </div>
-      <div class="comment-date">
-        2020/3/31(Wed) 12:47:30
-      </div>
-    </div>
-    <div class="lower-comment">
-      <div class="comment-content">
-        こんばんは
-      </div>
-    </div>
-  </div>
+  <%= render partial: 'comment', collection: @comments %>
 </div>
 
-<div class="form">
+<%# <div class="form">
   <div class="form-input">
     <input class="form-comment" placeholder= "type a comment">
     <label class="form-image">
@@ -79,4 +50,15 @@
     </label>
   </div>
   <input class="form-submit" type="submit" value="送信">
-</div>
+</div> %>
+
+<%= form_with model: [@problem, @comment], class: 'form', local: true do |f| %>
+  <div class="form-input">
+    <%= f.text_field :content, class: 'form-comment', placeholder: 'type a comment' %>
+    <label class="form-image">
+      <span class="image-file">画像</span>
+      <%= f.file_field :image, class: 'hidden' %>
+    </label>
+  </div>
+  <%= f.submit '送信', class: 'form-submit' %>
+<% end %>
