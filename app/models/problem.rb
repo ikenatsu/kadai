@@ -5,6 +5,6 @@ class Problem < ApplicationRecord
 
   validates :problem_title, presence: true
   validates :message, presence: true
-  validates :standpoint_id, presence: true
+  validates :standpoint_id, numericality: { other_than: 1, message: 'must be selected' }
   
 end
