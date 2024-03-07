@@ -15,8 +15,12 @@ RSpec.describe "Comments", type: :system do
       click_on(@problem_user.problem.problem_title)
 
       # DBに保存されていないことを確認する
+      expect {
+        find('input[name="commit"]').click
+      }.not_to change { Comment.count }
 
       # 元のページに戻ってくることを確認する
+      expect(page).to have_current_path(problem_comments_path(@problem_user.problem))
 
     end
   end
@@ -27,15 +31,23 @@ RSpec.describe "Comments", type: :system do
       sign_in(@problem_user.user)
 
       # 作成されたチャットルームへ遷移する
-      click_on(@proble,_user.problem.problem_title)
+      click_on(@problem_user.problem.problem_title)
 
       # 値をテキストフォームに入力する
+      post = 'テスト'
+      fill_in 'comment_content', with: post
 
       # 送信した値がDBに保存されていることを確認する
+      expect {
+        find('input[name="commit"]').click
+        sleep 1
+      }.to change { Comment.count }.by(1)
 
       # 投稿一覧画面に遷移していることを確認する
+      expect(page).to have_current_path(problem_comments_path(@problem_user.problem))
 
       # 送信した値がブラウザに表示されていることを確認する
+      expect(page).to have_content(post)
 
     end
 
@@ -50,12 +62,19 @@ RSpec.describe "Comments", type: :system do
       image_path = Rails.root.join('public/images/test_image.png')
 
       # 画像選択フォームに画像を添付する
+      attach_file('comment[image]', image_path, make_visible: true)
 
       # 送信した値がDBに保存されていることを確認する
+      expect {
+        find('input[name="commit"]').click
+        sleep 1
+      }.to change { Comment.count }.by(1)
 
       # 投稿一覧画面に遷移していることを確認する
+      expect(page).to have_current_path(problem_comments_path(@problem_user.problem))
 
       # 送信した画像がブラウザに表示されていることを確認する
+      expect(page).to have_selector('img')
 
     end
 
@@ -64,20 +83,29 @@ RSpec.describe "Comments", type: :system do
       sign_in(@problem_user.user)
 
       # 作成されたチャットルームへ遷移する
-      click_on(@problem_user.room.name)
+      click_on(@problem_user.problem.problem_title)
 
       # 添付する画像を定義する
       image_path = Rails.root.join('public/images/test_image.png')
 
       # 画像選択フォームに画像を添付する
+      attach_file('comment[image]', image_path, make_visible: true)
 
       # 値をテキストフォームに入力する
+      post = 'テスト'
+      fill_in 'comment_content', with: post
 
       # 送信した値がDBに保存されていることを確認する
+      expect {
+        find('input[name="commit"]').click
+        sleep 1
+      }.to change { Comment.count }.by(1)
 
       # 送信した値がブラウザに表示されていることを確認する
+      expect(page).to have_content(post)
 
       # 送信した画像がブラウザに表示されていることを確認する
+      expect(page).to have_selector('img')
 
     end
   end
